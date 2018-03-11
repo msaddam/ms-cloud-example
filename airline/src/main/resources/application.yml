@@ -1,0 +1,34 @@
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  profiles: dev
+  application:
+      name: airline-service
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    maximum-pool-size: 10
+    url: jdbc:mysql://localhost:3306/airline?createDatabaseIfNotExist=true
+    validation-query: select 1
+    connection-test-query: select 1
+    test-while-idle: true
+    test-on-borrow: true
+    time-between-eviction-runs-millis: 60000
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        strategy: org.hibernate.cfg.EJB3NamingStrategy
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    generate-ddl: true
+server:
+  contextPath:
+  port: 50002
+management:
+  security:
+    enabled: false
